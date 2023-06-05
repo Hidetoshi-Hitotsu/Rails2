@@ -7,12 +7,85 @@
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
+  <%# ヘッダー部分%>
+  <header class="p-4 text-bg-dark">
+    <div class="container">
+      <div class="d-flex flex-wrap align-items-center justify-content-between ">
+        <%= link_to root_path do %>
+        <%= image_tag "logo.png" , alt: "PotepanShare", width: "240px" %>
+        <% end %>
+
+        <div class="header-button">
+          <%#ユーザーログイン中%>
+          <% if user_signed_in? %>            
+            <%#ドロップダウンリスト%>
+            <div class="dropdown">
+              <button class="btn btn-dark dropdown-toggle" type="button" id="dropdownMenu1" data-bs-toggle="dropdown" aria-expanded="false">
+                <%# アイコン設置予定%>
+                <% if current_user.image? %>
+                        <%= image_tag current_user.image.url, class:"rounded-circle" ,size:"40x40" %>
+                    <% else %>
+                        <%= image_tag 'default-avatar.png', class:"rounded-circle" ,size:"40x40" %>
+                    <% end %>
+                <%= current_user.username %>
+              </button>
+              <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+              <%#リンク先はまだ仮の設定%>
+                <li><%= link_to "施設の新規登録" ,new_room_path , class: "dropdown-item" %></li>
+                <li><hr class="dropdown-driver"></li>
+                <li><%= link_to "予約済み一覧" ,reservation_own_path , class: "dropdown-item" %></li>
+                <li><%= link_to "登録済み一覧" ,room_own_path , class: "dropdown-item" ,method: :get %></li>
+                <li><%= link_to "アカウント設定" , users_show_path , class: "dropdown-item" ,method: :get %></li>
+                <li><hr class="dropdown-driver"></li>
+                <li><%= link_to "ログアウト" , destroy_user_session_path, method: :delete , class: "dropdown-item" %></li>
+              </ul>
+            </div>
+          <%#ユーザーログアウト中%>
+          <% else %>
+            <%= link_to 'ログイン', new_user_session_path, class: "btn btn-primary" %>
+            <%= link_to '新規登録', new_user_registration_path, class: "btn btn-light"%>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </header>
+
   <body>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
+    <% if flash[:notice] %>
+      <div class="container d-flex justify-content-center align-items-center">
+        <div class="flashmessage ">
+              <p class="notice"><%= notice %></p>
+        </div>
+      </div>
+    <% end %>
+
+    <% if flash[:alert] %>
+      <div class="container d-flex justify-content-center align-items-center">
+        <div class="flashmessage ">
+              <p class="alert"><%= alert %></p>
+        </div>
+      </div>
+    <% end %>
+
+
+
+
+<% if false %>
+    <div class="container d-flex justify-content-center align-items-center">
+      <div class="flashmessage ">
+          <% if flash[:notice] %>
+            <p class="notice"><%= notice %></p>
+          <% end %>
+          <% if flash[:alert] %>
+            <p class="alert"><%= alert %></p>
+          <% end %>
+      </div>
+    </div>
+<% end %>
     <%= yield %>
   </body>
 </html>

@@ -1,0 +1,52 @@
+<div class="container AccountContainer">
+    <h2 class="AcconutTitle mb-4">設定</h2>
+    <div class="AccountContentsContainer d-grid d-flex justify-content-between">
+        <div class="AccountList col-3">
+            <ul class="list-group">
+                <%= link_to "アカウント",users_show_path, class: "list-group-item list-group-item-action" %>
+                <li class="list-group-item list-group-item-primary">プロフィール</li>
+            </ul>
+        </div>
+        <div class="AccountContents col-8">
+            <div class="AccountContensTitle border-bottom border-gray d-flex justify-content-between mb-4">
+                <div>
+                    <h2>プロフィール</h2>
+                </div>
+                <div class="text-primary">
+                    <%= link_to users_profile_edit_path ,class:"no-border" do %>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
+                    <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"/>
+                    </svg>
+                    編集
+                    <% end %>
+                </div>
+            </div>
+            <div class="AccountContent d-flex  align-items-center mb-4">
+                <p class="fw-bold">アイコン画像</p>
+                <div>
+                    <% if current_user.image? %>
+                        <%= image_tag current_user.image.url, class:"rounded-circle" ,size:"80x80" %>
+                    <% else %>
+                        <%= image_tag 'default-avatar.png', class:"rounded-circle" ,size:"80x80" %>
+                    <% end %>
+                </div>
+            </div>
+            <div class="AccountContent d-flex mb-3">
+                <p class="fw-bold">名前</p>
+                <div><%= current_user.username %></div>
+            </div>
+            <div class="AccountContent d-flex mb-3">
+                <p class="fw-bold">自己紹介</p>
+                <div>
+                    <% if current_user.introduction? %>
+                        <%= current_user.introduction %>
+                    <% else %>
+                        よろしく
+                    <% end %>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<%= render "shared/footer" %>

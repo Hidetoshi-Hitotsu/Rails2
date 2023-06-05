@@ -1,0 +1,47 @@
+<div class="container">
+    <h2 class="mt-4 mb-4">登録済み一覧</h2>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>画像</th>
+                <th>施設名</th>
+                <th>紹介文</th>
+                <th>料金</th>
+                <th>作成日</th>
+                <th></th>
+            </tr>   
+        </thead>
+
+        <tbody>
+            <% @rooms.each do |room| %>
+            <tr>
+                <td>
+                    <% if room.image? %>
+                        <%= image_tag room.image.url, class: "Roomimg" ,size:"100x60" %>
+                    <% else %>
+                        <%= image_tag 'default-image.png',size:"100x60" %>
+                    <% end %>
+                </td>
+                <td><%= link_to room.roomname, room, class: "no-border" %></td>
+                <td><%= room.introduction %></td>
+                <td><%= room.price %></td>
+                <td><%= room.created_at.to_s(:date_jp) %></td>
+                <td>
+                    <div class="dropdown">
+                        <button class="btn dropdown-toggle hidden-after" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                            <%= image_tag 'three-dots-vertical' %>
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                            <li><%= link_to "編集" ,[:edit,room] , class: "dropdown-item" ,method: :get %></li>
+                            <li><%= link_to "施設を削除" ,room , class: "dropdown-item" ,method: :delete , data: {confirm: "削除しますか？"} %> </li>
+                        </ul>
+                    </div>
+                </td>
+            </tr>
+            <% end %>
+        </tbody>
+    </table>
+</div>
+
+<%= render "shared/footer" %>
+

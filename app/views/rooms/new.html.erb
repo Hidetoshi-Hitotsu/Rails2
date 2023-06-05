@@ -1,0 +1,45 @@
+<div class="FormRoomContainer align-items-center">
+    <div class="RoomFormContainer">
+        <h2 class="AcconutFormTitle mb-4">新規登録</h2>
+
+        <%= form_with model: @room do |f| %>        
+            
+                <div class="field d-flex mb-3">
+                    <%= f.label "施設名" ,class: "required formlabel" %><br />
+                    <%= f.text_field :roomname ,class: "form-control formcontent",placeholder:"施設名を入力" %>
+                </div>
+                <div class="field d-flex align-items-center mb-3">
+                    <%= f.label "施設詳細" ,class: "required formlabel" %><br />
+                    <%= f.text_area :introduction ,class: "form-control formcontent",placeholder:"施設詳細を入力" ,rows:"6" %>
+                </div>
+                <div class="field d-flex mb-3">
+                    <%= f.label "施設料金" ,class: "required formlabel" %>
+                    <%= f.number_field :price ,class: "form-control formcontent",placeholder:"１日あたりの料金を入力" %>
+                </div>
+                <div class="field d-flex mb-3">
+                    <%= f.label "施設住所" ,class: "required formlabel" %>
+                    <%= f.text_field :address ,class: "form-control formcontent",placeholder:"施設住所を入力" %>
+                </div>
+                <div class="field d-flex align-items-center mb-3">
+                    <%= f.label "施設画像" ,class: "formlabel" %>
+                    <label type="button" class="btn btn-light btn-outline-primary d-flex align-items-center gap-2 ">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-camera" viewBox="0 0 16 16">
+                        <path d="M15 12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h1.172a3 3 0 0 0 2.12-.879l.83-.828A1 1 0 0 1 6.827 3h2.344a1 1 0 0 1 .707.293l.828.828A3 3 0 0 0 12.828 5H14a1 1 0 0 1 1 1v6zM2 4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2h-1.172a2 2 0 0 1-1.414-.586l-.828-.828A2 2 0 0 0 9.172 2H6.828a2 2 0 0 0-1.414.586l-.828.828A2 2 0 0 1 3.172 4H2z"/>
+                        <path d="M8 11a2.5 2.5 0 1 1 0-5 2.5 2.5 0 0 1 0 5zm0 1a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7zM3 6.5a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0z"/>
+                        </svg>
+                        <span>画像アップロード</span>
+                        <%= f.file_field :image ,class: "visually-hidden" %>
+                    </label>
+                </div>
+                <%= f.hidden_field :user_id, value: current_user.id %>
+                <div class="actions d-grid gap-3">
+                    <%= f.submit "保存" ,class:"btn btn-primary p-3"%>
+                    <%= link_to "キャンセル" , :back, class: "btn btn-light btn-outline-primary p-3" %>
+                </div>
+            
+        <% end %>
+    </div>
+</div>
+
+
+<%= render "shared/footer" %>

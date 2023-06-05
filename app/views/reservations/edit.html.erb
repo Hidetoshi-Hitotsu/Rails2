@@ -1,0 +1,60 @@
+<div class="FormRoomContainer align-items-center">
+    <div class="RoomFormContainer">
+        <h2 class="AcconutFormTitle mb-4">再予約する</h2>
+
+        <div class="RoomContentsContainer ">
+                <div class="RoomImageContainer">
+                <%# 事前に設定がある場合とない場合をifで分岐させる %>
+                    <% if @room.image? %>
+                        <%= image_tag @room.image.url, class:"card-img-top Roomimg" ,size:"80x80" %>
+                    <% else %>
+                        <%= image_tag 'default-image.png', class:"card-img-top Roomimg" ,size:"80x80" %>
+                    <% end %>
+                </div>
+
+                <div class="RoomContentContainer">
+                    <div class="RoomTitle">
+                        <h3 class="text-gray"><%= @room.roomname %></h3>
+                        <h3 class="text-orange">¥<%= @room.price %>〜</h3>
+                    </div>
+                    <div class="RoomInfomation">
+                        <p class="text-gray"><%= @room.address %></p>
+                        <%# スターアイコンを挿入 %>
+                        <p><%=image_tag '' %></p>
+                    </div>
+                    <div class="RoomIntroduction">
+                        <p><%= @room.introduction %></p>
+                    </div>
+
+                    <%= form_with url:reservations_confirm_path , model:@resevation do |f| %>
+                    <div class="ReResevationContainer">
+                        <div class="ResevationInputContainer mb-4">
+                            <%= f.label "チェックイン" ,class: "required formlabel" %><br />
+                            <%= f.date_field :checkin , class:"form-control" , min: Time.zone.now %>
+                        </div>
+                        <div class="ResevationInputContainer mb-4">
+                            <%= f.label "チェックアウト" ,class: "required formlabel" %><br />
+                            <%= f.date_field :checkout , class:"form-control" , min: Time.zone.now %>
+                        </div>
+                        <div class="ResevationInputContainer mb-4">
+                            <%= f.label "人数" ,class: "required formlabel" %><br />
+                            <%= f.number_field :number , class:"form-control" , placeholder: "人数を入力" %>
+                        </div>
+                        <% if user_signed_in? %>
+                            <%= f.hidden_field :user_id, value: current_user.id %>
+                            <%= f.hidden_field :room_id, value: @room.id %>
+                        <% end %>
+                    </div>                        
+                    <div class="RoomContentButton d-grid gap-3">                        
+                        <%= f.submit "再予約する", class: "btn btn-primary p-3" %>                               
+                        <%= link_to "キャンセル" , :back, class: "btn btn-light btn-outline-primary p-3" %>
+                    </div>
+                    <% end %>
+                    
+                </div>
+        </div>
+    </div>
+</div>
+
+
+<%= render "shared/footer" %>
