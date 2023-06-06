@@ -2,7 +2,7 @@ class Reservation < ApplicationRecord
 
     validates :checkin, presence: true
     validates :checkout, presence: true
-    validates :number, presence: true
+    validates :number, presence: true, numericality: { only_integer: true ,greater_than: 0 }
 
     validate :date_cannot_be_in_the_past
 

@@ -27,7 +27,7 @@
                 </td>
                 <td><%= link_to reservation.room.roomname, room_path(reservation.room) %></td>
                 <td><%= reservation.room.introduction %></td>
-                <td><%= reservation.room.price %></td>
+                <td><%= reservation.room.price * reservation.number %>円</td>
                 <td><%= reservation.checkin.strftime('%Y/%m/%d') %></td>
                 <td><%= reservation.checkout.strftime('%Y/%m/%d') %></td>
                 <td><%= reservation.created_at.to_s(:datetime_jp) %></td>
@@ -37,7 +37,9 @@
                             <%= image_tag 'three-dots-vertical' %>
                         </button>
                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                        <% if false %>
                             <li><%= link_to "再予約" ,edit_reservation_path(reservation) , class: "dropdown-item" ,method: :get %></li>
+                        <% end %>
                             <li><%= link_to "予約を削除" ,reservation , class: "dropdown-item" ,method: :delete , data: {confirm: "削除しますか？"} %> </li>
                         </ul>
                     </div>

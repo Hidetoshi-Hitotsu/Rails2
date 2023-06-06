@@ -1,8 +1,8 @@
 class ReservationsController < ApplicationController
   before_action :authenticate_user!
 
-  def index
-  end
+  # def index
+  # end
 
   def confirm
     @reservation = Reservation.new(reservation_params)
@@ -24,21 +24,31 @@ class ReservationsController < ApplicationController
     end
   end
 
-  def edit
-    @reservation = Reservation.find(params[:id])
-    @room = @reservation.room
-  end
+  # def edit
+  #   @reservation = Reservation.find(params[:id])
+  #   @room = @reservation.room
+  # end
 
-  def update
-    @reservation = Reservation.find(params[:id])
-    if @reservation.update(reservation_params)
-      flash[:notice]="予約の情報を更新しました"
-      redirect_to reservation_own_path
-    else
-      flash[:alert]="予約情報に誤りがあります"
-      render "edit"
-    end
-  end
+  # def confirms
+  #   @reservation = Reservation.new(reservation_params)
+  #   @room = Room.find(reservation_params[:room_id])
+  #   if @reservation.invalid?
+  #     flash[:alert] = "予約情報に誤りがあります"
+  #     redirect_to edit_reservation_path(@reservation)
+  #   end
+  # end
+
+  # def update
+  #   @reservation = Reservation.find(reservation_params[:edit_id])
+  #   params[:id] = reservation_params[:edit_id]
+  #   if @reservation.update(reservation_params)
+  #     flash[:notice]="予約の情報を更新しました"
+  #     redirect_to reservation_own_path
+  #   else
+  #     flash[:alert]="予約情報に誤りがあります"
+  #     render "edit"
+  #   end
+  # end
 
 
   def destroy
@@ -55,7 +65,7 @@ class ReservationsController < ApplicationController
 
   private
     def reservation_params
-      params.require(:reservation).permit(:checkin, :checkout, :number, :room_id, :user_id)
+      params.require(:reservation).permit(:checkin, :checkout, :number, :room_id, :user_id, :edit_id)
     end
 
 end

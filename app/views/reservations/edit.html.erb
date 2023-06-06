@@ -1,3 +1,5 @@
+<% if false %>
+
 <div class="FormRoomContainer align-items-center">
     <div class="RoomFormContainer">
         <h2 class="AcconutFormTitle mb-4">再予約する</h2>
@@ -26,7 +28,7 @@
                         <p><%= @room.introduction %></p>
                     </div>
 
-                    <%= form_with url:reservations_confirm_path , model:@resevation do |f| %>
+                    <%= form_with url:reservations_confirms_path , model:@reservation ,method: :post do |f| %>
                     <div class="ReResevationContainer">
                         <div class="ResevationInputContainer mb-4">
                             <%= f.label "チェックイン" ,class: "required formlabel" %><br />
@@ -43,6 +45,7 @@
                         <% if user_signed_in? %>
                             <%= f.hidden_field :user_id, value: current_user.id %>
                             <%= f.hidden_field :room_id, value: @room.id %>
+                            <%= f.hidden_field :edit_id, value: @reservation.id %>
                         <% end %>
                     </div>                        
                     <div class="RoomContentButton d-grid gap-3">                        
@@ -58,3 +61,5 @@
 
 
 <%= render "shared/footer" %>
+
+<% end %>
