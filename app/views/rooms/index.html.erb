@@ -1,0 +1,35 @@
+
+<%= render "shared/search" %>
+
+<div class="container Sum">
+    <h3>
+    <%= @rooms.count %>
+    件見つかりました
+    </h3>
+</div>
+
+<div class="container">
+    <div class="row row-cols-1 row-cols-md-3 g-4 p-4">
+        <% if @rooms.present? %>
+            <% @rooms.each do |room| %>
+            <div class="col">
+                <div class="card p-2">
+                    <% if room.image? %>
+                            <%= image_tag room.image.url, class:"card-img-top Roomimg" ,size:"80x80" %>
+                    <% else %>
+                            <%= image_tag 'default-image.png', class:"card-img-top Roomimg" ,size:"80x80" %>
+                    <% end %>
+                    
+                    <div class="card-body">
+                        <h5 class="card-title"><%= room.roomname%></h5>
+                        <p class="card-text"><%= room.address %></p>
+                        <p class="card-text RoomIntroduction"><%= room.introduction %></p>
+                        <p class="card-text">¥<%= room.price %>〜</p>
+                        <%= link_to "詳細はこちら" ,room_path(room.id) ,class:"btn btn-primary" ,method: :get %>
+                    </div>
+                </div>
+            </div>
+            <%end%>
+        <%end%>
+    </div>
+</div>

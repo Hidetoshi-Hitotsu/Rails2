@@ -1,3 +1,72 @@
+<div class="container AccountContainer">
+    <h2 class="AcconutTitle mb-4">設定</h2>
+    <div class="AccountContentsContainer d-grid d-flex justify-content-between">
+        <div class="AccountList col-3">
+            <ul class="list-group">
+                <li class="list-group-item list-group-item-primary">アカウント</li>
+                <%= link_to "プロフィール",users_profile_path, class: "list-group-item list-group-item-action" %>
+            </ul>
+        </div>
+        <div class="AccountContents col-8">
+            <div class="AccountContensTitle border-bottom border-gray d-flex justify-content-between mb-4">
+                <div>
+                    <h2>アカウント</h2>
+                </div>
+            </div>
+
+        <%# ここから作業開始%>
+          <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+            <%#= render "devise/shared/error_messages", resource: resource %>
+
+            <div class="field AccountContent d-flex mb-3">
+              <p>メールアドレス</p>
+              <div><%= f.email_field :email, autofocus: true, autocomplete: "email" ,class: "form-control" %></div>
+            </div>
+
+            <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+              <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+            <% end %>
+
+            <div class="field AccountContent d-flex mb-3">
+              <p class="d-flex flex-column">
+                <span>変更後パスワード</span>
+                <span class="fs-7">※変更する場合のみ</span>
+              </p>
+              <div><%= f.password_field :password, autocomplete: "new-password" ,class: "form-control" %></div>
+            </div>
+
+            <div class="field AccountContent d-flex mb-3">
+              <p class="d-flex flex-column">
+                <span>確認用パスワード</span>
+                <span class="fs-7">※変更する場合のみ</span>
+              </p>
+              <div><%= f.password_field :password_confirmation, autocomplete: "new-password" ,class: "form-control" %></div>
+            </div>
+
+            <div class="field AccountContent d-flex mb-3">
+              <p>現在のパスワード</p>
+              <div><%= f.password_field :current_password, autocomplete: "current-password" ,class: "form-control" %></div>
+            </div>
+
+            <div class="actions gap-3 d-flex justify-content-end">
+              <%= link_to "キャンセル" , users_show_path, class: "btn btn-light btn-outline-primary p-3", method: :get %>
+              <%= f.submit "保存" ,class:"btn btn-primary p-3"%>
+            </div>
+          <% end %>
+          <%# ここから作業ここまで%>
+        </div>
+    </div>
+</div>
+
+<%= render "shared/footer" %>
+
+
+
+
+
+
+<%# 元データ %>
+<% if false %>
 <h2>Edit <%= resource_name.to_s.humanize %></h2>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
@@ -40,4 +109,5 @@
 
 <div>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete %></div>
 
-<%= link_to "Back", :back %>
+<%# 初期設定= link_to "Back", :back %>
+<% end %>

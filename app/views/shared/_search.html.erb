@@ -1,0 +1,9 @@
+<div class="container-fluid bg-light p-5">
+    <div class="SearchContainer d-flex justify-content-center">
+        <%= form_with(url: rooms_path, local: true, method: :get ,class:"") do |f| %>
+            <%= f.text_field :area, class:"", placeholder: 'エリア名を入力'%>
+            <%= f.text_field :keyword, class:"", placeholder: 'キーワードを入力'%>
+            <%= f.submit "検索" ,class:"btn btn-secondary" %>
+        <% end %>
+    </div>
+</div>

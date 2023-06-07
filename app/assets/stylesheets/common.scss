@@ -1,0 +1,236 @@
+//フラッシュメッセージ
+.flashmessage{
+    border-radius: 4px;
+    box-shadow: 0 3px 5px -1px rgba(0,0,0,.2), 0 6px 10px rgba(0,0,0,.14), 0 1px 18px rgba(0,0,0,.12);
+    background-color: white;
+    font-size: 14px;
+    line-height: 18px;
+    margin: auto;
+    right: auto;
+    left: auto;
+    padding: 14px 16px;
+    position: fixed;
+    bottom: 16px;
+    min-width: 288px;
+    width: -webkit-fit-content;
+    width: -moz-fit-content;
+    width: fit-content;
+    text-align: center;
+}
+
+.notice{
+    color: black;
+}
+.alert{
+    color:red;
+}
+
+a{
+    text-decoration: none;
+}
+
+.no-border{
+    text-decoration: none;
+}
+
+//トップページ
+.bg-top-image{
+    background-image: image-url('top.jpeg');
+    background-size: cover;
+    width: 100%;
+    height: 100vh;
+    padding-top: 150px;
+    margin-bottom: 120px;
+    height: 850px;
+}
+
+.FirstView_Title{
+    font-size: 84px;
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 600;
+    text-align: center;
+    line-height: 110px;
+}
+
+.FirstView_Search{
+    width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.3);
+}
+
+.RecommendAreaSection{
+    padding-bottom: 160px;
+}
+
+
+.RecommendAreaText{
+    text-decoration: underline;
+    text-decoration-color: rgb(255, 145, 0);
+    text-underline-offset: 30px;
+    font-size: 42px;
+    margin-bottom: 100px;
+}
+
+
+.cover{
+    height: 333px;
+    object-fit: cover;
+}
+
+//ボタン関連
+.btn-new{
+    background: orange;
+}
+
+//アカウントフォーム関連
+.FormContainer{
+    background-color: rgb(221, 220, 220);
+    padding-top: 80px;
+    padding-bottom: 160px;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+}
+
+.FormRoomContainer{
+    background-color: white;
+    //padding-top: 80px;
+    padding-bottom: 160px;
+    //height: 100vh;
+    display: flex;
+    justify-content: center;
+}
+
+.formlabel{
+    width: 35%;
+}
+.formcontent{
+    width: 65%;
+}
+
+
+.required:after {
+    content: "*";
+    color: #ff4949;
+    font-size: 14px;
+    margin-left: 4px;
+}
+
+.AccountFormContainer{
+    width: 500px;
+    padding: 30px 20px 30px 20px;
+    background-color: white;
+    height:fit-content;
+}
+
+.RoomFormContainer{
+    width: 800px;
+    padding: 30px 20px 30px 20px;
+    background-color: white;
+    height:fit-content;
+}
+
+.AccountFormTitle{
+    text-align: center;
+}
+
+
+//アカウント編集関連
+.AccountContainer{
+    padding-top: 80px;
+    padding-bottom: 160px;
+}
+
+.AccountContent p{
+    width: 25%;
+}
+.AccountContent div{
+    width: 75%;
+}
+
+.fs-7{
+    font-size: 12px;
+}
+
+
+//施設詳細画面
+
+.RoomContentsContainer{
+    display: flex;
+    align-items: flex-start;
+    column-gap: 20px;
+}
+.RoomImageContainer{
+    width: 40%;
+}
+.RoomImageContainer img{
+    object-fit: contain;
+    width: 100%;
+    height: 100%;
+}
+
+.RoomIntroduction{
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+}
+
+.Roomimg{
+    object-fit: contain;
+    width: 100%;
+    height: 151px;
+}
+
+.RoomContentContainer{
+    width: 60%;
+    background-color: rgb(237, 224, 220);
+    padding: 25px 15px 15px 25px;
+}
+
+.RoomTitle{
+    display: flex;
+    justify-content: space-between;
+
+}
+
+.text-gray{
+    color: rgb(124, 121, 121);
+}
+.text-orange{
+    color: rgb(255, 145, 0);
+}
+
+
+.RoomResevationContainer{
+    background-color: white;
+    display: flex;
+    justify-content: space-around;
+    padding: 15px 10px 10px 15px;
+    margin-bottom: 20px;
+}
+.ReResevationContainer{
+    background-color: white;
+    display: flex;
+    flex-flow: column;
+    padding: 15px 10px 10px 15px;
+    margin-bottom: 20px;
+}
+
+
+.RoomLinkContainer{
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+.RoomLink{
+    text-decoration: none;
+    font-size: 20px;
+}
+
+//フッター
+footer{
+    padding-top: 160px;
+    padding-bottom: 160px;
+}
